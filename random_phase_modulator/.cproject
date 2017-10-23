@@ -30,7 +30,6 @@
 									<listOptionValue builtIn="false" value="C:/Xilinx/Vivado/2017.3/include/etc"/>
 									<listOptionValue builtIn="false" value="C:/Xilinx/Vivado/2017.3/win64/tools/auto_cc/include"/>
 									<listOptionValue builtIn="false" value="C:/Xilinx/Vivado/2017.3/win64/tools/systemc/include"/>
-									<listOptionValue builtIn="false" value="C:/Users/pedro/github/hls_for_dsp"/>
 								</option>
 								<option id="gnu.cpp.compiler.option.preprocessor.def.331734084" name="Defined symbols (-D)" superClass="gnu.cpp.compiler.option.preprocessor.def" useByScannerDiscovery="false" valueType="definedSymbols">
 									<listOptionValue builtIn="false" value="AESL_TB"/>
@@ -48,7 +47,6 @@
 									<listOptionValue builtIn="false" value="C:/Xilinx/Vivado/2017.3/include/etc"/>
 									<listOptionValue builtIn="false" value="C:/Xilinx/Vivado/2017.3/win64/tools/auto_cc/include"/>
 									<listOptionValue builtIn="false" value="C:/Xilinx/Vivado/2017.3/win64/tools/systemc/include"/>
-									<listOptionValue builtIn="false" value="C:/Users/pedro/github/hls_for_dsp"/>
 								</option>
 								<option id="gnu.c.compiler.option.preprocessor.def.symbols.913481677" name="Defined symbols (-D)" superClass="gnu.c.compiler.option.preprocessor.def.symbols" useByScannerDiscovery="false" valueType="definedSymbols">
 									<listOptionValue builtIn="false" value="AESL_TB"/>
@@ -116,7 +114,6 @@
 									<listOptionValue builtIn="false" value="C:/Xilinx/Vivado/2017.3/include/etc"/>
 									<listOptionValue builtIn="false" value="C:/Xilinx/Vivado/2017.3/win64/tools/auto_cc/include"/>
 									<listOptionValue builtIn="false" value="C:/Xilinx/Vivado/2017.3/win64/tools/systemc/include"/>
-									<listOptionValue builtIn="false" value="C:/Users/pedro/github/hls_for_dsp"/>
 								</option>
 								<inputType id="cdt.managedbuild.tool.gnu.cpp.compiler.input.801589419" superClass="cdt.managedbuild.tool.gnu.cpp.compiler.input"/>
 							</tool>
@@ -129,7 +126,6 @@
 									<listOptionValue builtIn="false" value="C:/Xilinx/Vivado/2017.3/include/etc"/>
 									<listOptionValue builtIn="false" value="C:/Xilinx/Vivado/2017.3/win64/tools/auto_cc/include"/>
 									<listOptionValue builtIn="false" value="C:/Xilinx/Vivado/2017.3/win64/tools/systemc/include"/>
-									<listOptionValue builtIn="false" value="C:/Users/pedro/github/hls_for_dsp"/>
 								</option>
 								<inputType id="cdt.managedbuild.tool.gnu.c.compiler.input.666350678" superClass="cdt.managedbuild.tool.gnu.c.compiler.input"/>
 							</tool>
