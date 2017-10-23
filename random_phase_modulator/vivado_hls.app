@@ -1,8 +1,8 @@
-<project xmlns="com.autoesl.autopilot.project" top="phase_mod" name="random_phase_modulator">
+<project xmlns="com.autoesl.autopilot.project" name="random_phase_modulator" top="phase_mod">
     <files>
+        <file name="../phase_mod_tb.cpp" sc="0" tb="1" cflags=" "/>
         <file name="random_phase_modulator/phase_mod.cpp" sc="0" tb="false" cflags=""/>
         <file name="random_phase_modulator/phase_mod.hpp" sc="0" tb="false" cflags=""/>
-        <file name="../phase_mod_tb.cpp" sc="0" tb="1" cflags=""/>
     </files>
     <includePaths/>
     <libraryPaths/>
