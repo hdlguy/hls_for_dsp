@@ -14,4 +14,6 @@ csynth_design
 #cosim_design
 export_design -rtl verilog -format ip_catalog -description "a phase randomizer for fading application" -vendor "hdlguy" -display_name "phase_mod"
 
+exit
+
 
