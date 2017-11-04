@@ -7,12 +7,13 @@ CFLAGS=-I.
 DEPS = Makefile 
 
 PUBLIC_LIBS =
-LIB_FILES =
+LIB_FILES = main.cpp z.cpp
 
-LIB_OBJS := $(subst .c,.o,$(LIB_FILES))
+LIB_OBJS := $(subst .cpp,.o,$(LIB_FILES))
 
-# $@: target file name, $^: all prerequisites
+# $@: target file name 
 # $<: first prerequisite
+# $^: all prerequisites
 
 main: main.o $(LIB_OBJS) $(PUBLIC_LIBS)
 	$(CC) -g -o $@ $^
