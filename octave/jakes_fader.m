@@ -64,6 +64,5 @@ arg_0 = 2*pi*fd*repmat(t,[N 1 M]);
 arg_I = (arg_0.*cos_alpha) + Phi;
 arg_Q = (arg_0.*sin_alpha) + phi;
 X = sqrt(1/M) * sum(cos(arg_I) + j*cos(arg_Q), 3);
-whos;
 
 %--------------------------------------------------------------------------

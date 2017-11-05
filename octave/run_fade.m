@@ -1,6 +1,6 @@
 clear;
-N=2; 
-M=3; 
+N=1; 
+M=4; 
 
 states.Phi=(2*pi)*rand(N,1,M); 
 states.phi=(2*pi)*rand(N,1,M); 

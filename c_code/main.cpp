@@ -7,9 +7,9 @@
 
 int main()
 {
-    const int num_fades = 100;
+    const int num_fades = 1000000;
     const double fd = 10;
-    const double Fs = 30.72e6;
+    const double Fs = 1e6;
 
     // Initializing the random variables.
     rand_state state;
@@ -19,20 +19,25 @@ int main()
     }
     state.theta = 2*M_PI*rand();
 
+
     // computing fades.
-    fade_cmplx_type Z[num_fades];
+    //fade_cmplx_type fade[num_fades];
+    fade_cmplx_type* fade = new fade_cmplx_type[num_fades];
     double t;
     for(int i=0; i<num_fades; i++){
         t = i/Fs;
-        Z[i] = z(fd, t, state);
+        fade[i] = z(fd, t, state);
+        //std::cout << t << ", " << fade[i] << "\n";
     }
+
 
     // write to file for analysis.
     std::ofstream fp("fade.dat");
     for(int i=0; i<num_fades; i++){
-        fp << Z[i] << "\n";
+        fp << real(fade[i]) << "  " << imag(fade[i]) << "\n";
     }
     fp.close();
+    delete[] fade;
 
     return(0);
     
