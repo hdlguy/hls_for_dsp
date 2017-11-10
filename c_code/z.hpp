@@ -14,5 +14,5 @@ typedef struct {
 } rand_state;
 
 // function prototype.
-fade_cmplx_type z(double fd, double t, rand_state state);
+fade_cmplx_type z(double fd, double time, rand_state state);
 
