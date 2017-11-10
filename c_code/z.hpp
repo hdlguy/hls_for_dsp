@@ -11,6 +11,8 @@ typedef struct {
     double phi_real[M];
     double phi_imag[M];
     double theta;
+    double cos_alpha[M];
+    double sin_alpha[M];
 } rand_state;
 
 // function prototype.
