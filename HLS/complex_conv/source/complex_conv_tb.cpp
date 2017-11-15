@@ -1,13 +1,17 @@
 #include <iostream>
-#include "phase_mod.hpp"
+#include <math.h>
+#include "complex_conv.hpp"
 
 int main()
 {
-	bb_cplx_type bb_in, ph_in, mod_out;
+	bb_cplx_type x_in, mod_out;
 	std::complex<float> expected;
 
-	bb_in = bb_cplx_type(+0.707,+0.707);
-	ph_in = bb_cplx_type(-0.707,+0.707);
+	x_in = bb_cplx_type(+0.707,+0.707);
+
+	coef_cplx_type coef[num_coefs];
+	for(int i=0; i<num_coefs; i++) coef[i] = coef_cplx_type(0.0, 0.0);
+	coef[0] = coef_cplx_type(+1.0, +0.0);
 
 	const float A = 2047.0/2048.0;
 	float bb_angle, ph_angle;
@@ -18,9 +22,8 @@ int main()
 	const float tolerance = 7e-4;
 	int errors = 0;
 	for(int i=0; i<iters; i++) {
-		bb_in = bb_cplx_type(A*cos(bb_angle), A*sin(bb_angle));
-		ph_in = bb_cplx_type(A*cos(ph_angle), A*sin(ph_angle));
-		mod_out = phase_mod(bb_in, ph_in);
+		x_in = bb_cplx_type(A*cos(bb_angle), A*sin(bb_angle));
+		mod_out = complex_conv(x_in, coef);
 
 		expected = std::complex<float>(A*cos(ph_angle), A*sin(ph_angle)) * std::complex<float>(A*cos(bb_angle), A*sin(bb_angle));
 		if (
