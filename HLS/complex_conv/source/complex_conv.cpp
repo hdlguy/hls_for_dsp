@@ -7,7 +7,6 @@ bb_cplx_type complex_conv( bb_cplx_type x_in, coef_cplx_type (&coef)[num_coefs] 
 #pragma HLS STREAM variable=coef dim=1
 #pragma HLS PIPELINE II=4
 
-
     // Implement the data delay pipeline.
     bb_cplx_type x_delay[num_coefs];
     for(int i=0; i<num_coefs-1; i++){
