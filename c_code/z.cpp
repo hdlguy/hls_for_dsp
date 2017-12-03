@@ -4,7 +4,7 @@
 #include "z.hpp"
 
 // This function generates a single complex fade value for a 
-// given time and doppler shift.
+// given time and doppler frequency.
 // Here are the equations 
 
 // Z(t) = Zc(t) + j*Zs(t);

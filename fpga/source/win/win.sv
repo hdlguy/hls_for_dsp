@@ -7,9 +7,10 @@ module win #(
 )  (
     input  logic              clk,
     input  logic              dv_in,
-    input  logic [Iwidth-1:0] index,
+    input  logic [Iwidth-1:0] index_in,
     input  logic [Dwidth-1:0] din_imag, din_real,
     output logic              dv_out,
+    output logic [Iwidth-1:0] index_out,
     output logic [Dwidth-1:0] dout_imag, dout_real
 );
 
@@ -56,15 +57,24 @@ module win #(
     logic [Dwidth*2-1:0] prod_imag, prod_real;
     const logic [Dwidth*2-1:0] round_word = 2**(Dwidth-2);
     logic dv_in_reg, dv_in_reg_reg;
+    logic [Iwidth-1:0] index_in_reg, index_in_reg_reg;
     always_ff @(posedge clk) begin
+        // first pipeline.
+        dv_in_reg <= dv_in; 
+        index_in_reg <= index_in;
         din_imag_reg <= din_imag;
         din_real_reg <= din_real;
-        win_reg <= win[index];
+        win_reg <= win[index_in];
+        // multiply pipeline.
+        dv_in_reg_reg <= dv_in_reg; 
+        index_in_reg_reg <= index_in_reg;
         prod_imag <= (signed'(din_imag_reg) * signed'(win_reg)) + signed'(round_word); // multiply and round.
         prod_real <= (signed'(din_real_reg) * signed'(win_reg)) + signed'(round_word);
+        // output pipeline.
+        dv_out <= dv_in_reg_reg;
+        index_out <= index_in_reg_reg;
         dout_imag <= prod_imag[Dwidth*2-1-1:Dwidth*2-1-Dwidth]; 
         dout_real <= prod_real[Dwidth*2-1-1:Dwidth*2-1-Dwidth];
-        dv_in_reg <= dv_in; dv_in_reg_reg <= dv_in_reg; dv_out <= dv_in_reg_reg;
     end
 
 endmodule

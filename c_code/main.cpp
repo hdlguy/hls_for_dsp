@@ -5,11 +5,11 @@
 #include <time.h>
 #include "z.hpp"
 
-    const double fd = 10;             // doppler frequency.
+    const double fd = 10;               // doppler frequency.
     const double Fs = 100e3;            // sample rate of fader function
-    const double T = 4;               // seconds.
+    const double T = 4;                 // seconds.
     const int num_fades = (int)round((Fs*T));
-    const int N = 4;                 // Number of carrier frequencies to fade.
+    const int N = 4;                    // Number of carrier frequencies to fade.
     fade_cmplx_type fade[N][num_fades];
 
 int main()
