@@ -20,13 +20,13 @@ module linterp #(
     input  logic              dv_in,
     input  logic [iwidth-1:0] index_in,
     input  logic [dwidth-1:0] din_real, din_imag,
-    output logic              dv_out,
     input  logic [iwidth-1:0] index_out,
     output logic [Nfft-1:0][dwidth-1:0] dout_real, dout_imag
 );
 
     logic [Nfft-1:0][dwidth-1:0] latch_real, latch_imag;
 
+    logic bank_load;
     always_ff @(posedge clk) begin
         // store the samples as they burst in.
         if (dv_in == 1) begin
@@ -36,7 +36,7 @@ module linterp #(
         // detect the last sample arriving.
         if ((index_in == Nfft-1) && (dv_in == 1)) begin
             bank_load <= 1;
-        else
+        end else begin
             bank_load <= 0;
         end 
         // bank load, all at once, the output from the stored samples.

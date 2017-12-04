@@ -15,6 +15,7 @@ generate_target {all} [get_ips *]
 
 # Read in the hdl source.
 read_verilog -sv  [glob ../source/win/win.sv]
+read_verilog -sv  [glob ../source/linterp.sv]
 read_verilog -sv  [glob ../source/fade_ifft_tb.sv]
 
 current_fileset

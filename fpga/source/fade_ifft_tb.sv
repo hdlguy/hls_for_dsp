@@ -36,39 +36,75 @@ module fade_ifft_tb ();
     } fft_data_type;
 
     const fft_data_type fft_data [0:31] = {
-        //  imag,  real, tlast
-        '{     0,     1023,    1023},
-        '{     0,    1023,     1023},
-        '{     0,     1023,    1023},
-        '{     0,    1023,     1023},
-        '{     0,     1023,    1023},
-        '{     0,       1023,       1023},
-        '{     0,     1023,    1023},
-        '{     0,    1023,     1023},
-        '{     0,     1023,    1023},
-        '{     0,    1023,     1023},
-        '{     0,     1023,    -1023},
-        '{     0,    1023,     1023},
-        '{     0,     1023,    1023},
-        '{     0,       1023,       1023},
-        '{     0,     1023,    1023},
-        '{     0,    1023,     1023},
-        '{     0,     1023,    1023},
-        '{     0,    1023,     1023},
-        '{     0,     1023,    1023},
-        '{     0,    1023,     1023},
-        '{     0,     1023,    1023},
-        '{     0,       1023,       1023},
-        '{     0,     1023,    -1023},
-        '{     0,    1023,     1023},
-        '{     0,     1023,    1023},
-        '{     0,    1023,     1023},
-        '{     0,     1023,    1023},
-        '{     0,    1023,     1023},
-        '{     0,     1023,    1023},
-        '{     0,       1023,       1023},
-        '{     0,     1023,    1023},
-        '{     0,    1023,     1023}};
+        //  imag,      real, tlast
+        '{     0,  0,   0},
+        '{     0,  0,   0},
+        '{     0,  0,   0},
+        '{     1023,  0,   0},
+        '{     0,  0,   0},
+        '{     0,  0,   0},
+        '{     0,  0,   0},
+        '{     0,  0,   0},
+        '{     0,  0,   0},
+        '{     0,  0,   0},
+        '{     0,  0,   0},
+        '{     0,  0,   0},
+        '{     0,  0,   0},
+        '{     0,  0,   0},
+        '{     0,  0,   0},
+        '{     0,  0,   0},
+        '{     0,  0,   0},
+        '{     0,  0,   0},
+        '{     0,  0,   0},
+        '{     0,  0,   0},
+        '{     0,  0,   0},
+        '{     0,  0,   0},
+        '{     0,  0,   0},
+        '{     0,  0,   0},
+        '{     0,  0,   0},
+        '{     0,  0,   0},
+        '{     0,  0,   0},
+        '{     0,  0,   0},
+        '{     0,  0,   0},
+        '{     0,  0,   0},
+        '{     0,  0,   0},
+        '{     0,  0,   1}};
+/*
+    const fft_data_type fft_data [0:31] = {
+        //  imag,      real, tlast
+        '{     1023,  1023,   0},
+        '{     1023,  1023,   0},
+        '{     1023,  1023,   0},
+        '{     1023,  1023,   0},
+        '{     1023,  1023,   0},
+        '{     1023,  1023,   0},
+        '{     1023,  1023,   0},
+        '{     1023,  1023,   0},
+        '{     1023,  1023,   0},
+        '{     1023,  1023,   0},
+        '{     1023,  1023,   0},
+        '{     1023,  1023,   0},
+        '{     1023,  1023,   0},
+        '{     1023,  1023,   0},
+        '{     1023,  1023,   0},
+        '{     1023,  1023,   0},
+        '{     1023,  1023,   0},
+        '{     1023,  1023,   0},
+        '{     1023,  1023,   0},
+        '{     1023,  1023,   0},
+        '{     1023,  1023,   0},
+        '{     1023,  1023,   0},
+        '{     1023,  1023,   0},
+        '{     1023,  1023,   0},
+        '{     1023,  1023,   0},
+        '{     1023,  1023,   0},
+        '{     1023,  1023,   0},
+        '{     1023,  1023,   0},
+        '{     1023,  1023,   0},
+        '{     1023,  1023,   0},
+        '{     1023,  1023,   0},
+        '{     1023,  1023,   1}};
+*/
 
     const logic FWD_INV = 0;
     const logic SCALE = 10'b0101010110;
@@ -141,8 +177,8 @@ module fade_ifft_tb ();
 
     logic win_dv_in;
     assign win_dv_in = m_axis_data_tvalid;
-    logic [4:0] win_index;
-    assign win_index = m_axis_data_tuser[4:0];
+    logic [4:0] win_index_in, win_index_out;
+    assign win_index_in = m_axis_data_tuser[4:0];
     logic [16-1:0] win_din_imag, win_din_real;
     assign win_din_imag = m_axis_data_tdata[31:16];
     assign win_din_real = m_axis_data_tdata[15:0];
@@ -151,14 +187,27 @@ module fade_ifft_tb ();
     win windower (
         .clk(clk),
         .dv_in(win_dv_in),
-        .index(win_index),
+        .index_in(win_index_in),
         .din_imag(win_din_imag), 
         .din_real(win_din_real),
         .dv_out(win_dv_out),
+        .index_out(win_index_out),
         .dout_imag(win_dout_imag),
         .dout_real(win_dout_real)
     );
 
+
+    logic linterp_dv_out;
+    logic [31:0][15:0] linterp_dout_real, linterp_dout_imag;
+    linterp interpolator(
+        .clk(clk),
+        .dv_in(win_dv_out),
+        .index_in(win_index_out),
+        .din_real(win_dout_real),
+        .din_imag(win_dout_imag),
+        .dout_imag(linterp_dout_imag),
+        .dout_real(linterp_dout_real)
+    );
+
     
 endmodule
-
