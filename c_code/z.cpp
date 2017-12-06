@@ -14,8 +14,8 @@
 // PHI_real(n), PHI_imag(n) and theta are random variables on [0, 2*pi].
 
 
-fade_cmplx_type z(  double fd,         // doppler frequency in Hz.
-                    double time,       // time in seconds.
+fade_cmplx_type z(  fade_type fd,         // doppler frequency in Hz.
+                    fade_type time,       // time in seconds.
                     rand_state state)  // structure with random variables over 1:M.
 {
 

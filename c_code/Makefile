@@ -1,21 +1,13 @@
-ALL_EXE = main
-all: $(ALL_EXE) 
+all: main
 
 CC=g++
-CFLAGS=-I. 
-
-DEPS = Makefile 
-
-PUBLIC_LIBS =
-LIB_FILES = main.cpp z.cpp
-
-LIB_OBJS := $(subst .cpp,.o,$(LIB_FILES))
+CFLAGS=-I./ -I/opt/Xilinx/Vivado/2017.3/include/
 
 # $@: target file name 
 # $<: first prerequisite
 # $^: all prerequisites
 
-main: main.o $(LIB_OBJS) $(PUBLIC_LIBS)
+main: main.o z.o
 	$(CC) -g -o $@ $^
 
 run: main
@@ -24,5 +16,8 @@ run: main
 clean:
 	rm -rf *.o $(ALL_EXE) 
 
-%.o: %.c $(DEPS)
+main.o: main.cpp z.hpp Makefile
+	$(CC) -g -c -o $@ $< $(CFLAGS)
+
+z.o: z.cpp z.hpp Makefile
 	$(CC) -g -c -o $@ $< $(CFLAGS)
