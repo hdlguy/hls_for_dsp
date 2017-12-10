@@ -5,8 +5,8 @@
 #include <time.h>
 #include "z.hpp"
 
-    const double fd = 10.0;               // doppler frequency.
-    const double Fs = 100e3;            // sample rate of fader function
+    //const double fd = 10.0;               // doppler frequency.
+    //const double Fs = 100e3;            // sample rate of fader function
     const double T = 1;                 // seconds.
     const int num_fades = (int)round((Fs*T));
     const int N = 4;                    // Number of carrier frequencies to fade.

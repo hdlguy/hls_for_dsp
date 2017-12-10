@@ -14,7 +14,7 @@ run: main
 	./main
 
 clean:
-	rm -rf *.o $(ALL_EXE) 
+	rm *.o main
 
 main.o: main.cpp z.hpp Makefile
 	$(CC) -g -c -o $@ $< $(CFLAGS)

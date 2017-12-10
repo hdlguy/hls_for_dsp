@@ -3,12 +3,15 @@
 #include <complex>
 #include <cstdint>
 
-const uint32_t M = 8;  // number of sinusoids to sum.
+const uint32_t   M = 8;      // number of sinusoids to sum.
+const double    fd = 10.0;   // doppler frequency.
+const double    Fs = 100e3;  // sample rate of fader function
 
-const int fade_width = 16;
+//const int fade_width = 24;
+//typedef ap_fixed<fade_width, 6, AP_RND, AP_SAT, 2> fade_type;
 
-// typedef ap_fixed<fade_width, 6, AP_RND, AP_SAT, 2> fade_type;
 typedef double fade_type;
+
 typedef std::complex<fade_type> fade_cmplx_type;
 
 typedef struct {
