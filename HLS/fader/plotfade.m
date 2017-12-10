@@ -1,6 +1,6 @@
 clear;
 
-load -ascii fade.dat;
+load -ascii ./solution1/csim/build/fade.dat;
 
 Fs = 100e3;
 t = (0:size(fade,1)-1)/Fs;

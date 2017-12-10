@@ -5,11 +5,14 @@
 ############################################################
 open_project fader
 set_top z
+add_files fader/source/z.cpp
+add_files fader/source/z.hpp
+add_files -tb fader/source/main.cpp
 open_solution "solution1"
 set_part {xc7z020clg484-1} -tool vivado
 create_clock -period 10 -name default
 #source "./fader/solution1/directives.tcl"
-#csim_design
+csim_design -compiler gcc
 csynth_design
-#cosim_design
+cosim_design
 export_design -format ip_catalog

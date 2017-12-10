@@ -1,11 +1,11 @@
 // z.hpp
 #include <ap_fixed.h>
 #include <complex>
-#include <cstdint>
+//#include <cstdint>
 
 const uint32_t   M = 8;      // number of sinusoids to sum.
 const double    fd = 10.0;   // doppler frequency.
-const double    Fs = 100e3;  // sample rate of fader function
+const double    Fs = 10e3;  // sample rate of fader function
 
 //const int fade_width = 24;
 //typedef ap_fixed<fade_width, 6, AP_RND, AP_SAT, 2> fade_type;
@@ -13,6 +13,8 @@ const double    Fs = 100e3;  // sample rate of fader function
 typedef double fade_type;
 
 typedef std::complex<fade_type> fade_cmplx_type;
+
+const fade_type fade_pi = M_PI;
 
 typedef struct {
     fade_type phi_real[M];

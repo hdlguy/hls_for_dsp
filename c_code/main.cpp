@@ -28,8 +28,8 @@ int main()
         }
         state[j].theta = (2.0*M_PI/rand_max)*rand(); // uniformly random over [0, 2*M_PI].
         for(int i=0; i<M; i++){
-            state[j].cos_alpha[i] = cos(2.0*M_PI*i - M_PI + state[j].theta); // [-1.0, +1.0]
-            state[j].sin_alpha[i] = sin(2.0*M_PI*i - M_PI + state[j].theta);
+            state[j].cos_alpha[i] = cos((2.0*M_PI*i - M_PI + state[j].theta)/(4*M)); // [-1.0, +1.0]
+            state[j].sin_alpha[i] = sin((2.0*M_PI*i - M_PI + state[j].theta)/(4*M));
         }
     }
 
