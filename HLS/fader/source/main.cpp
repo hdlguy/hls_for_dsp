@@ -15,39 +15,47 @@ int main()
     const int N = 4;                    // Number of carrier frequencies to fade.
     fade_cmplx_type fade[N][num_fades];
 
-    const double rand_max = ((double)RAND_MAX)+1.0;
 
     // Initializing the random variables.
     // These are computed once for each independent carrier to fade.
+    // They will be compiled into the FPGA hardware as constants.
     rand_state state[N];
-    srand (time(NULL));
+    double theta, alpha;
+    //srand (time(NULL));
+    srand(100);
     for(int j=0; j<N; j++){
         for(int i=0; i<M; i++){
-            state[j].phi_real[i] = (2*M_PI/rand_max)*rand(); // uniformly random over [0, 2*M_PI].
-            state[j].phi_imag[i] = (2*M_PI/rand_max)*rand();
+            state[j].phi_real[i] = (fade_type)(2.0*M_PI*(((double)rand())/rand_max) - M_PI); // uniformly random over [-M_PI, M_PI).
+            state[j].phi_imag[i] = (fade_type)(2.0*M_PI*(((double)rand())/rand_max) - M_PI); // uniformly random over [-M_PI, M_PI).
         }
-        state[j].theta = (2.0*M_PI/rand_max)*rand(); // uniformly random over [0, 2*M_PI].
         for(int i=0; i<M; i++){
-            state[j].cos_alpha[i] = cos((2*M_PI*i - M_PI + state[j].theta)/(4*M)); // [-1.0, +1.0]
-            state[j].sin_alpha[i] = sin((2*M_PI*i - M_PI + state[j].theta)/(4*M));
+            theta = 2.0*M_PI*(((double)rand())/rand_max) - M_PI; // uniformly random over [-M_PI, M_PI).
+            alpha = (2.0*M_PI*(i+1) - M_PI + theta)/(4.0*M);
+            state[j].cos_alpha[i] = (fade_type)cos(alpha); // [-1.0, +1.0]
+            state[j].sin_alpha[i] = (fade_type)sin(alpha);
+            std::cout << j << ", " << i << " alpha = " << alpha << ", theta = " << theta << "\n";
         }
     }
 
-/*
+
     // print the random variables.
     for(int j=0; j<N; j++){
+    	std::cout << "channel " << j << ":\nphi = ";
         for(int i=0; i<M; i++){
-            std::cout << state[j].phi_real[i] << " " << state[j].phi_imag[i] << " ";
+            std::cout << "(" << state[j].phi_real[i] << " " << state[j].phi_imag[i] << "), ";
         }
-        std::cout << state[j].theta << " ";
-        std::cout << rand() << "\n";
+        std::cout << "\n(cos_alpha, sin_alpha) = ";
+        for(int i=0; i<M; i++){
+            std::cout << "(" << state[j].cos_alpha[i] << " " << state[j].sin_alpha[i] << "), ";
+        }
+        std::cout << "\n\n";
     }
-*/
+
 
     // computing fades.
     double time;
     for(int i=0; i<num_fades; i++){
-        time = i/Fs;
+        time = i*Ts;
         for(int j=0; j<N; j++){
             fade[j][i] = z(fd, time, state[j]);
         }

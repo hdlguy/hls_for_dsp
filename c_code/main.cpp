@@ -15,7 +15,7 @@
 int main()
 {
 
-    const double rand_max = RAND_MAX;
+    const double rand_max = ((double)RAND_MAX) + 1.0;
 
     // Initializing the random variables.
     // These are computed once for each independent carrier to fade.
