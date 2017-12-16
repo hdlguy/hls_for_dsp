@@ -24,13 +24,14 @@ fade_cmplx_type z(  fade_type fd,     // doppler frequency in Hz.
     //double alpha_n;
     fade_type Zc = 0.0;
     fade_type Zs = 0.0;
-    //fade_type time = t*Ts;
     for(int n=1; n<=M; n++){
         //alpha_n = (2*M_PI*n - M_PI + state.theta)/(4*M);   // the cos(alpha_n) and sin(alpha_n) can be pre-computed.
         //Zc += cos(2*M_PI*fd*time*cos(alpha_n) + state.phi_real[n]);
         //Zs += cos(2*M_PI*fd*time*sin(alpha_n) + state.phi_imag[n]);
         Zc += (fade_type)cos(2*fade_pi*fd*time*state.cos_alpha[n] + state.phi_real[n]);
         Zs += (fade_type)cos(2*fade_pi*fd*time*state.sin_alpha[n] + state.phi_imag[n]);
+        //Zc += (fade_type)cos(t*state.wd_cos_alpha[n] + state.phi_real[n]);
+        //Zs += (fade_type)cos(t*state.wd_sin_alpha[n] + state.phi_imag[n]);
     }
     Zc *= (fade_type)sqrt(1.0/M);
     Zs *= (fade_type)sqrt(1.0/M);

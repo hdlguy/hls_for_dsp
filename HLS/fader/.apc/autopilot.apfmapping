@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <autopilotfilemapping:AutoPilotFileMapping xmlns:autopilotfilemapping="www.autoesl.com/autopilotfilemapping">
   <source>
-    <originFiles name="z.cpp" path="/home/pedro/github/hls_for_dsp/HLS/fader/source/z.cpp"/>
     <originFiles name="z.hpp" path="/home/pedro/github/hls_for_dsp/HLS/fader/source/z.hpp"/>
+    <originFiles name="z.cpp" path="/home/pedro/github/hls_for_dsp/HLS/fader/source/z.cpp"/>
   </source>
   <testbench>
     <originFiles name="main.cpp" path="/home/pedro/github/hls_for_dsp/HLS/fader/source/main.cpp"/>

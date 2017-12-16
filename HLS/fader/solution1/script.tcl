@@ -5,8 +5,8 @@
 ############################################################
 open_project fader
 set_top z
-add_files fader/source/z.cpp
 add_files fader/source/z.hpp
+add_files fader/source/z.cpp
 add_files -tb fader/source/main.cpp
 open_solution "solution1"
 set_part {xc7z020clg484-1} -tool vivado
