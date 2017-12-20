@@ -1,9 +1,9 @@
 // z.hpp
-#include <ap_fixed.h>
+//#include <ap_fixed.h>
 #include <complex>
-#include <cstdint>
+#include <stdint.h>
 
-const uint32_t N = 4;                    // Number of carrier frequencies to fade.
+const uint32_t N = 32;     // Number of carrier frequencies to fade.
 const uint32_t M = 8;      // number of sinusoids to sum.
 
 typedef double fade_type;

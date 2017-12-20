@@ -4,6 +4,7 @@
 #include <math.h>
 #include <time.h>
 #include "z.hpp"
+#include <cstdlib>
 
 const double fd = 100.0;   // doppler frequency.
 const double Fs = 10e3;  // sample rate of fader function
@@ -21,7 +22,7 @@ int main()
     rand_state state[N];
     //srand (time(NULL));
     srand (100);
-    fade_type theta;
+    fade_type theta, alpha;
     for(int j=0; j<N; j++){
         for(int i=0; i<M; i++){
             state[j].phi_real[i] = (2.0*M_PI/rand_max)*rand() - M_PI; // uniformly random over [-M_pi, M_PI].
@@ -29,11 +30,13 @@ int main()
         }
         theta = (2.0*M_PI/rand_max)*rand() - M_PI; // uniformly random over [-M_PI, M_PI].
         for(int i=0; i<M; i++){
-            state[j].cos_alpha[i] = cos((2.0*M_PI*i - M_PI + theta)/(4*M)); // [-1.0, +1.0]
-            state[j].sin_alpha[i] = sin((2.0*M_PI*i - M_PI + theta)/(4*M));
+            alpha = (2.0*M_PI*(i+1) - M_PI + theta)/(4*M);
+            state[j].cos_alpha[i] = cos(alpha); // [-1.0, +1.0]
+            state[j].sin_alpha[i] = sin(alpha);
         }
     }
 
+    std::cout << "computing fades\n";
 
     // computing fades.
     double time;
@@ -43,6 +46,7 @@ int main()
             fade[j][i] = z(fd, time, state[j]);
         }
     }
+
     std::cout << "number of fades calculated = " << num_fades << "\n";
 
 
