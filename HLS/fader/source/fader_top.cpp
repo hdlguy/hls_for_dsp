@@ -4,7 +4,7 @@
 #include "z.hpp"
 
 // This header file contains the random variables for each fade channel.
-#include "rand_state.hpp"
+#include "fader_states.hpp"
 
 
 void fader_top( int i, fade_cmplx_type (&fade)[N] )

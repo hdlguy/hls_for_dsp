@@ -1,7 +1,7 @@
 % write_fade_hpp.m
 % writes out the fader random variables to a C++ header file for HLS.
 
-function [retval] = write_fader_hpp (states, filename)
+function [retval] = write_fader_hpp (states, fd, filename)
 
     N = size(states.theta, 1);
     M = size(states.Phi, 3);
@@ -12,8 +12,8 @@ function [retval] = write_fader_hpp (states, filename)
     
     fprintf(fp, 'const rand_state state[%d] = {\n', N);
     
-    cos_alpha = zeros(1,M);
-    sin_alpha = zeros(1,M);
+    wd_cos_alpha = zeros(1,M);
+    wd_sin_alpha = zeros(1,M);
     for i=1:N
         fprintf(fp, '    // channel = %d\n', i-1);
         fprintf(fp, '    {\n');
@@ -40,27 +40,27 @@ function [retval] = write_fader_hpp (states, filename)
         % we need to precompute the cos(alpha) and sin(alpha).
         for j=1:M
             alpha = ( 2*pi*j - pi + states.theta(i,1,1) )/(4*M);
-            cos_alpha(j) = cos(alpha);
-            sin_alpha(j) = sin(alpha);
+            wd_cos_alpha(j) = 2*pi*fd*cos(alpha);
+            wd_sin_alpha(j) = 2*pi*fd*sin(alpha);
         end
         
         fprintf(fp, '        {');
         for j=1:M
-            fprintf(fp, '%f', cos_alpha(j));
+            fprintf(fp, '%f', wd_cos_alpha(j));
             if (j!=M) 
                 fprintf(fp, ', ');
             else
-                fprintf(fp, '}, // cos_alpha\n');
+                fprintf(fp, '}, // wd_cos_alpha\n');
             end
         end
         
         fprintf(fp, '        {');
         for j=1:M
-            fprintf(fp, '%f', sin_alpha(j));
+            fprintf(fp, '%f', wd_sin_alpha(j));
             if (j!=M) 
                 fprintf(fp, ', ');
             else
-                fprintf(fp, '} // sin_alpha\n');
+                fprintf(fp, '} // wd_sin_alpha\n');
             end
         end
         

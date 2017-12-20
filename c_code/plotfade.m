@@ -2,7 +2,7 @@ clear;
 
 load -ascii fade.dat;
 
-Fs = 100e3;
+Fs = 10e3;
 t = (0:size(fade,1)-1)/Fs;
 
 clf;

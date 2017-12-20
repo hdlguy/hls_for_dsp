@@ -9,7 +9,7 @@ states.Phi   = 2*pi*rand(N,1,M) - pi;
 states.phi   = 2*pi*rand(N,1,M) - pi; 
 states.theta = 2*pi*rand(N,1,1) - pi;
 
-write_fader_hpp(states, 'fader_states.hpp');
+write_fader_hpp(states, fd, 'fader_states.hpp');
 
 t=(0:1/Fs:T);  % time vector.
 [X,states] = jakes_fader(t,fd,N,states,M);

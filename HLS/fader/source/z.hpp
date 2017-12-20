@@ -7,6 +7,7 @@
 typedef float fade_type;
 typedef std::complex<fade_type> fade_cmplx_type;
 
+const uint32_t  N = 4;      // number of sinusoids to sum.
 const uint32_t  M = 8;      // number of sinusoids to sum.
 const double   fd = 100.0;   // doppler frequency.
 const double   Fs = 10e3;  // sample rate of fader function
