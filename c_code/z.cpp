@@ -18,6 +18,7 @@ fade_cmplx_type z(  fade_type fd,     // doppler frequency in Hz.
                     fade_type time,   // time in seconds.
                     rand_state state) // structure with random variables over 1:M.
 {
+    const fade_type final_scale = sqrt(2.0/M);
 
     // sum over the M sinusoids
     fade_type Zc = 0.0;
@@ -26,8 +27,8 @@ fade_cmplx_type z(  fade_type fd,     // doppler frequency in Hz.
         Zc += cos(2*M_PI*fd*time*state.cos_alpha[n] + state.phi_real[n]);
         Zs += cos(2*M_PI*fd*time*state.sin_alpha[n] + state.phi_imag[n]);
     }
-    Zc *= sqrt(1.0/M);
-    Zs *= sqrt(1.0/M);
+    Zc *= final_scale;
+    Zs *= final_scale;
 
     // return the complex fade
     fade_cmplx_type Z = fade_cmplx_type(Zc, Zs); 
