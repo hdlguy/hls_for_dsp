@@ -38,6 +38,7 @@ int main()
 
     std::cout << "computing fades\n";
 
+    clock_t begin = clock();
     // computing fades.
     double time;
     for(int i=0; i<num_fades; i++){
@@ -46,9 +47,10 @@ int main()
             fade[j][i] = z(fd, time, state[j]);
         }
     }
+    clock_t end = clock();
+    double time_spent = (double)(end - begin) / CLOCKS_PER_SEC;
 
-    std::cout << "number of fades calculated = " << num_fades << "\n";
-
+    std::cout << "number of fades calculated = " << num_fades << ", execution time = " << time_spent << "\n";
 
     // write to file for analysis.
     std::ofstream fp("fade.dat");
@@ -63,3 +65,5 @@ int main()
     return(0);
     
 }
+
+
