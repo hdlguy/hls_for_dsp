@@ -1,5 +1,10 @@
 //
-module verilog_fader(
+module fader #(
+    parameter M = 8,
+    parameter N = 32,
+    parameter Wpath = 3,
+    parameter Wchan = 5
+)(
     input  logic        reset,
     input  logic        clk,
     input  logic [24:0] t_index, // time index
@@ -9,8 +14,9 @@ module verilog_fader(
     output logic [4:0]  chan_out,
     output logic [15:0] Zc_imag,
     output logic [15:0] Zc_real
-)
+);
 
+    logic [24:0] t_latch;
     logic [7:0] arg_count;
     always_ff @(posedge clk) begin
         if (start==1) begin
@@ -27,7 +33,10 @@ module verilog_fader(
     assign N_index = arg_count[7:3];
 
 
+    logic [17:0] wd_sin_alpha, wd_cos_alpha;
+    logic [13:0] phi_imag, phi_real, phi_imag_reg, phi_real_reg;
     logic signed [41:0] prod_imag, prod_real;
+    logic [13:0] arg_imag, arg_real;
     always_ff @(posedge clk) begin
         // get the fade parameters for this channel and reflector.
         wd_sin_alpha <= states.wd_sin_alpha[N_index][M_index];
@@ -36,15 +45,15 @@ module verilog_fader(
         phi_real     <= states.phi_real    [N_index][M_index];
 
         // Multiply by the time index and pipeline.
-        prod_imag <= signed'wd_sin_alpha * signed't_index;
-        prod_real <= signed'wd_cos_alpha * signed't_index;
+        prod_imag <= signed'(wd_sin_alpha) * signed'(t_latch);
+        prod_real <= signed'(wd_cos_alpha) * signed'(t_latch);
         phi_imag_reg <= phi_imag;
         phi_real_reg <= phi_real;
 
         // Add the time variant phase to the non-time variant (Phi).
+        // This gives the input to the cosine roms.
         arg_imag <= signed'(prod_imag[42-2:42-2-13]) + signed'(phi_imag_reg);
-        arg_real <= signed'(prod_real[42-2:42-2-13]) + signed'(phi_real_reg);
-        
+        arg_real <= signed'(prod_real[42-2:42-2-13]) + signed'(phi_real_reg);        
     end
 
     // Now feed the cosine roms.
