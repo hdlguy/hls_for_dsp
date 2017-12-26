@@ -9,10 +9,10 @@ set_property target_language Verilog [current_project]
 set_property default_lib work [current_project]
 #load_features ipintegrator
 
-#set_property  ip_repo_paths  ../../HLS/phase_mod/csynth/solution1/impl/ip [current_project]
-#read_ip ../source/phase_mod_0/phase_mod_0.xci
-#upgrade_ip -quiet  [get_ips *]
-#generate_target {all} [get_ips *]
+set_property  ip_repo_paths  ../../HLS/phase_mod/csynth/solution1/impl/ip [current_project]
+read_ip ../cos_rom/cos_rom.xci
+upgrade_ip -quiet  [get_ips *]
+generate_target {all} [get_ips *]
 
 # Read in the hdl source.
 read_verilog -sv  [glob ../states_pack.sv]

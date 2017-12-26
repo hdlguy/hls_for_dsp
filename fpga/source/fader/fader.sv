@@ -37,8 +37,8 @@ module fader #(
 
     logic signed [17:0] wd_sin_alpha, wd_cos_alpha;
     logic signed [13:0] phi_imag, phi_real, phi_imag_reg, phi_real_reg;
-    logic signed [41:0] prod_imag, prod_real;
-    logic [13:0] arg_imag, arg_real;
+    logic signed [42:0] prod_imag, prod_real;
+    logic signed [13:0] arg_imag, arg_real;
     always_ff @(posedge clk) begin
         // get the fade parameters for this channel and reflector.
         wd_sin_alpha <= states_pack::state[N_index].wd_sin_alpha[M_index];
@@ -58,8 +58,33 @@ module fader #(
         arg_real <= signed'(prod_real[42-2:42-2-13]) + signed'(phi_real_reg);        
     end
 
-    // Now feed the cosine roms.
+    // Now the cosine roms.
+    logic [15:0] s_axis_phase_tdata_imag_rom;
+    assign s_axis_phase_tdata_imag_rom = {2'b00, arg_imag};
+    logic [15:0] m_axis_data_tdata_imag_rom;
+    cos_rom imag_rom (
+        .aclk(clk),                                
+        .s_axis_phase_tvalid(1'b1),  
+        .s_axis_phase_tdata(s_axis_phase_tdata_imag_rom),    
+        .m_axis_data_tvalid(),    
+        .m_axis_data_tdata(m_axis_data_tdata_imag_rom)      
+    );
+    logic [11:0] imag_rom_out;
+    assign imag_rom_out = m_axis_data_tdata_imag_rom[11:0];
+
+    logic [15:0] s_axis_phase_tdata_real_rom;
+    assign s_axis_phase_tdata_real_rom = {2'b00, arg_real};
+    logic [15:0] m_axis_data_tdata_real_rom;
+    cos_rom real_rom (
+        .aclk(clk),                                
+        .s_axis_phase_tvalid(1'b1),  
+        .s_axis_phase_tdata(s_axis_phase_tdata_real_rom),    
+        .m_axis_data_tvalid(),    
+        .m_axis_data_tdata(m_axis_data_tdata_real_rom)      
+    );
+    logic [11:0] real_rom_out;
+    assign real_rom_out = m_axis_data_tdata_real_rom[11:0];
 
 endmodule
-
     
+
