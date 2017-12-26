@@ -1,4 +1,6 @@
 //
+import states_pack::*;
+
 module fader #(
     parameter M = 8,
     parameter N = 32,
@@ -33,16 +35,16 @@ module fader #(
     assign N_index = arg_count[7:3];
 
 
-    logic [17:0] wd_sin_alpha, wd_cos_alpha;
-    logic [13:0] phi_imag, phi_real, phi_imag_reg, phi_real_reg;
+    logic signed [17:0] wd_sin_alpha, wd_cos_alpha;
+    logic signed [13:0] phi_imag, phi_real, phi_imag_reg, phi_real_reg;
     logic signed [41:0] prod_imag, prod_real;
     logic [13:0] arg_imag, arg_real;
     always_ff @(posedge clk) begin
         // get the fade parameters for this channel and reflector.
-        wd_sin_alpha <= states.wd_sin_alpha[N_index][M_index];
-        wd_cos_alpha <= states.wd_cos_alpha[N_index][M_index];
-        phi_imag     <= states.phi_imag    [N_index][M_index];
-        phi_real     <= states.phi_real    [N_index][M_index];
+        wd_sin_alpha <= states_pack::state[N_index].wd_sin_alpha[M_index];
+        wd_cos_alpha <= states_pack::state[N_index].wd_cos_alpha[M_index];
+        phi_imag     <= states_pack::state[N_index].phi_imag    [M_index];
+        phi_real     <= states_pack::state[N_index].phi_real    [M_index];
 
         // Multiply by the time index and pipeline.
         prod_imag <= signed'(wd_sin_alpha) * signed'(t_latch);

@@ -15,6 +15,7 @@ set_property default_lib work [current_project]
 #generate_target {all} [get_ips *]
 
 # Read in the hdl source.
+read_verilog -sv  [glob ../states_pack.sv]
 read_verilog -sv  [glob ../fader.sv]
 read_verilog -sv  [glob ../fader_tb.sv]
 
