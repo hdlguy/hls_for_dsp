@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wave_config>
+   <wave_state>
+   </wave_state>
+   <db_ref_list>
+      <db_ref path="fader_tb_behav.wdb" id="1">
+         <top_modules>
+            <top_module name="fader_tb" />
+            <top_module name="glbl" />
+            <top_module name="states_pack" />
+         </top_modules>
+      </db_ref>
+   </db_ref_list>
+   <zoom_setting>
+      <ZoomStartTime time="0fs"></ZoomStartTime>
+      <ZoomEndTime time="1000000001fs"></ZoomEndTime>
+      <Cursor1Time time="0fs"></Cursor1Time>
+   </zoom_setting>
+   <column_width_setting>
+      <NameColumnWidth column_width="301"></NameColumnWidth>
+      <ValueColumnWidth column_width="113"></ValueColumnWidth>
+   </column_width_setting>
+   <WVObjectSize size="27" />
+   <wvobject type="logic" fp_name="/fader_tb/reset">
+      <obj_property name="ElementShortName">reset</obj_property>
+      <obj_property name="ObjectShortName">reset</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/fader_tb/clk">
+      <obj_property name="ElementShortName">clk</obj_property>
+      <obj_property name="ObjectShortName">clk</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/fader_tb/t_index">
+      <obj_property name="ElementShortName">t_index[24:0]</obj_property>
+      <obj_property name="ObjectShortName">t_index[24:0]</obj_property>
+      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/fader_tb/start">
+      <obj_property name="ElementShortName">start</obj_property>
+      <obj_property name="ObjectShortName">start</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/fader_tb/dv_out">
+      <obj_property name="ElementShortName">dv_out</obj_property>
+      <obj_property name="ObjectShortName">dv_out</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/fader_tb/chan_out">
+      <obj_property name="ElementShortName">chan_out[4:0]</obj_property>
+      <obj_property name="ObjectShortName">chan_out[4:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/fader_tb/Zc_imag">
+      <obj_property name="ElementShortName">Zc_imag[15:0]</obj_property>
+      <obj_property name="ObjectShortName">Zc_imag[15:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/fader_tb/Zc_real">
+      <obj_property name="ElementShortName">Zc_real[15:0]</obj_property>
+      <obj_property name="ObjectShortName">Zc_real[15:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/fader_tb/clk_period">
+      <obj_property name="ElementShortName">clk_period[31:0]</obj_property>
+      <obj_property name="ObjectShortName">clk_period[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="divider10" type="divider">
+      <obj_property name="label">uut</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/fader_tb/uut/arg_count">
+      <obj_property name="ElementShortName">arg_count[7:0]</obj_property>
+      <obj_property name="ObjectShortName">arg_count[7:0]</obj_property>
+      <obj_property name="CustomSignalColor">#FF00FF</obj_property>
+      <obj_property name="UseCustomSignalColor">true</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/fader_tb/uut/N_index">
+      <obj_property name="ElementShortName">N_index[4:0]</obj_property>
+      <obj_property name="ObjectShortName">N_index[4:0]</obj_property>
+      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+      <obj_property name="CustomSignalColor">#FF00FF</obj_property>
+      <obj_property name="UseCustomSignalColor">true</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/fader_tb/uut/M_index">
+      <obj_property name="ElementShortName">M_index[2:0]</obj_property>
+      <obj_property name="ObjectShortName">M_index[2:0]</obj_property>
+      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+      <obj_property name="CustomSignalColor">#FF00FF</obj_property>
+      <obj_property name="UseCustomSignalColor">true</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/fader_tb/uut/wd_sin_alpha">
+      <obj_property name="ElementShortName">wd_sin_alpha[17:0]</obj_property>
+      <obj_property name="ObjectShortName">wd_sin_alpha[17:0]</obj_property>
+      <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/fader_tb/uut/wd_cos_alpha">
+      <obj_property name="ElementShortName">wd_cos_alpha[17:0]</obj_property>
+      <obj_property name="ObjectShortName">wd_cos_alpha[17:0]</obj_property>
+      <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/fader_tb/uut/phi_imag">
+      <obj_property name="ElementShortName">phi_imag[13:0]</obj_property>
+      <obj_property name="ObjectShortName">phi_imag[13:0]</obj_property>
+      <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/fader_tb/uut/phi_real">
+      <obj_property name="ElementShortName">phi_real[13:0]</obj_property>
+      <obj_property name="ObjectShortName">phi_real[13:0]</obj_property>
+      <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/fader_tb/uut/prod_imag">
+      <obj_property name="ElementShortName">prod_imag[42:0]</obj_property>
+      <obj_property name="ObjectShortName">prod_imag[42:0]</obj_property>
+      <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/fader_tb/uut/prod_real">
+      <obj_property name="ElementShortName">prod_real[42:0]</obj_property>
+      <obj_property name="ObjectShortName">prod_real[42:0]</obj_property>
+      <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/fader_tb/uut/phi_imag_reg">
+      <obj_property name="ElementShortName">phi_imag_reg[13:0]</obj_property>
+      <obj_property name="ObjectShortName">phi_imag_reg[13:0]</obj_property>
+      <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/fader_tb/uut/phi_real_reg">
+      <obj_property name="ElementShortName">phi_real_reg[13:0]</obj_property>
+      <obj_property name="ObjectShortName">phi_real_reg[13:0]</obj_property>
+      <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/fader_tb/uut/arg_imag">
+      <obj_property name="ElementShortName">arg_imag[13:0]</obj_property>
+      <obj_property name="ObjectShortName">arg_imag[13:0]</obj_property>
+      <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
+      <obj_property name="CellHeight">100</obj_property>
+      <obj_property name="AnalogYRangeType">ANALOG_YRANGETYPE_AUTO</obj_property>
+      <obj_property name="AnalogYRangeMin">0.000000</obj_property>
+      <obj_property name="AnalogYRRangeMax">0.000000</obj_property>
+      <obj_property name="AnalogInterpolation">ANALOG_INTERPOLATION_HOLD</obj_property>
+      <obj_property name="AnalogOffscale">ANALOG_OFFSCALE_HIDE</obj_property>
+      <obj_property name="AnalogHorizLine">0.000000</obj_property>
+      <obj_property name="WaveformStyle">STYLE_ANALOG</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/fader_tb/uut/arg_real">
+      <obj_property name="ElementShortName">arg_real[13:0]</obj_property>
+      <obj_property name="ObjectShortName">arg_real[13:0]</obj_property>
+      <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
+      <obj_property name="CellHeight">100</obj_property>
+      <obj_property name="AnalogYRangeType">ANALOG_YRANGETYPE_AUTO</obj_property>
+      <obj_property name="AnalogYRangeMin">0.000000</obj_property>
+      <obj_property name="AnalogYRRangeMax">0.000000</obj_property>
+      <obj_property name="AnalogInterpolation">ANALOG_INTERPOLATION_HOLD</obj_property>
+      <obj_property name="AnalogOffscale">ANALOG_OFFSCALE_HIDE</obj_property>
+      <obj_property name="AnalogHorizLine">0.000000</obj_property>
+      <obj_property name="WaveformStyle">STYLE_ANALOG</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/fader_tb/uut/s_axis_phase_tdata_imag_rom">
+      <obj_property name="ElementShortName">s_axis_phase_tdata_imag_rom[15:0]</obj_property>
+      <obj_property name="ObjectShortName">s_axis_phase_tdata_imag_rom[15:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/fader_tb/uut/s_axis_phase_tdata_real_rom">
+      <obj_property name="ElementShortName">s_axis_phase_tdata_real_rom[15:0]</obj_property>
+      <obj_property name="ObjectShortName">s_axis_phase_tdata_real_rom[15:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/fader_tb/uut/imag_rom_out">
+      <obj_property name="ElementShortName">imag_rom_out[11:0]</obj_property>
+      <obj_property name="ObjectShortName">imag_rom_out[11:0]</obj_property>
+      <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
+      <obj_property name="CellHeight">100</obj_property>
+      <obj_property name="AnalogYRangeType">ANALOG_YRANGETYPE_AUTO</obj_property>
+      <obj_property name="AnalogYRangeMin">0.000000</obj_property>
+      <obj_property name="AnalogYRRangeMax">0.000000</obj_property>
+      <obj_property name="AnalogInterpolation">ANALOG_INTERPOLATION_HOLD</obj_property>
+      <obj_property name="AnalogOffscale">ANALOG_OFFSCALE_HIDE</obj_property>
+      <obj_property name="AnalogHorizLine">0.000000</obj_property>
+      <obj_property name="WaveformStyle">STYLE_ANALOG</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/fader_tb/uut/real_rom_out">
+      <obj_property name="ElementShortName">real_rom_out[11:0]</obj_property>
+      <obj_property name="ObjectShortName">real_rom_out[11:0]</obj_property>
+      <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
+      <obj_property name="CellHeight">100</obj_property>
+      <obj_property name="AnalogYRangeType">ANALOG_YRANGETYPE_AUTO</obj_property>
+      <obj_property name="AnalogYRangeMin">0.000000</obj_property>
+      <obj_property name="AnalogYRRangeMax">0.000000</obj_property>
+      <obj_property name="AnalogInterpolation">ANALOG_INTERPOLATION_HOLD</obj_property>
+      <obj_property name="AnalogOffscale">ANALOG_OFFSCALE_HIDE</obj_property>
+      <obj_property name="AnalogHorizLine">0.000000</obj_property>
+      <obj_property name="WaveformStyle">STYLE_ANALOG</obj_property>
+   </wvobject>
+</wave_config>
