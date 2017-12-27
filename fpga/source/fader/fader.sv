@@ -1,11 +1,22 @@
-//
+// fader.sv
+// This module implements a multi-channel Modified Jakes fader based on 
+// "Improved Models for the Generation of Multiple Uncorrelated Raleigh Fading Waveforms"
+// Zheng and Xiao
+
+// This code is hard wired to produce N=32 channels with M=8 paths.
+// Computation must run through all N*M combination, requiring 256 clock cycles.
+
+// This fader also assumes that the ratio of the fader update rate Fs_fade to the
+// doppler frequency Fd is a power of two. Ie., Fs_fade/Fd = R = 1024, 2.48, ...
+
 import states_pack::*;
 
 module fader #(
-    parameter M = 8,
-    parameter N = 32,
-    parameter Wpath = 3,
-    parameter Wchan = 5
+    parameter M = 8,   // The number of paths to sum for each fade.
+    parameter N = 32,  // The number of independent fader channels.
+    parameter Wpath = 3, // Number of bits to encode the paths [0:M-1].
+    parameter Wchan = 5,  // Number of bits to encode the channels [0:N-1].
+    parameter R = 1024   // Fs_fade/Fd.
 )(
     input  logic        reset,
     input  logic        clk,
