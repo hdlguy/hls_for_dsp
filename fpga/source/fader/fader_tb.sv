@@ -21,23 +21,22 @@ module fader_tb ();
         #(clk_period/2);
     end
 
-    logic signed [7:0] junk[3:0] = {-15, -5, +5, +15};
     initial begin
         reset = 1;
         start = 0;
         t_index = 0;
-
-        for(int i=0; i<4; i++) $display("junk[%d] = %d, ", i, junk[i]);
-
-        for(int i=0; i<8; i++) $display("phi_real[31][%d] = %d, ", i, states_pack::state[31].phi_real[i]); 
-        for(int i=0; i<8; i++) $display("phi_imag[31][%d] = %d, ", i, states_pack::state[31].phi_imag[i]); 
-
+        //for(int i=0; i<8; i++) $display("phi_real[31][%d] = %d, ", i, states_pack::state[31].phi_real[i]); 
+        //for(int i=0; i<8; i++) $display("phi_imag[31][%d] = %d, ", i, states_pack::state[31].phi_imag[i]); 
         #(clk_period*10);
         reset = 0;
         #(clk_period*10);
-        start = 1;
-        #(clk_period*1);
-        start = 0;
+        forever begin
+            start = 1;
+            #(clk_period*1);
+            start = 0;
+            #(clk_period*299);
+            t_index++;
+        end
     end
 
 endmodule
