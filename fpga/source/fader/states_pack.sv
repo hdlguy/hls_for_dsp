@@ -10,7 +10,7 @@ package states_pack;
         logic signed [18-1:0]   wd_sin_alpha [8-1:0];
     } fade_struct; 
 
-    const fade_struct state[32] = {
+    const fade_struct state[32] = '{
         // channel = 0
         '{
             '{2507, -6631, -6288, 7097, -7811, 7507, -5906, 958}, // phi_real

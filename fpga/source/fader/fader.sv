@@ -29,6 +29,7 @@ module fader #(
     output logic [15:0] Zc_real
 );
 
+    
     logic [24:0] t_latch, t_latch_reg;
     logic [7:0] arg_count; // The 3 lsb are the 0 to M-1. The 5 msb are the channel.
     logic sr;
@@ -59,6 +60,7 @@ module fader #(
     assign N_index = arg_count[7:3];
 
 
+    localparam int R_prime = 2**$clog2(R); // factor to implement multiply by Fd/Fs.
     logic [15:0] sr_delay;
     logic [15:0][7:0] arg_delay;
     logic signed [17:0] wd_sin_alpha, wd_cos_alpha;
@@ -85,8 +87,8 @@ module fader #(
 
         // Add the time variant phase to the non-time variant (Phi).
         // This gives the input to the cosine roms.
-        arg_imag <= signed'(prod_imag[42-2:42-2-13]) + signed'(phi_imag_reg);
-        arg_real <= signed'(prod_real[42-2:42-2-13]) + signed'(phi_real_reg);        
+        arg_imag <= signed'(prod_imag[42-2:42-2-13])/R + signed'(phi_imag_reg);
+        arg_real <= signed'(prod_real[42-2:42-2-13])/R + signed'(phi_real_reg);        
         sr_delay[2] <= sr_delay[1];
         arg_delay[2] <= arg_delay[1];
     end
