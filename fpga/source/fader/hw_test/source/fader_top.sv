@@ -25,6 +25,7 @@ module fader_top(
 
 
     logic dv_out;
+    logic [4:0]  chan_out;
     logic [15:0] Zc_imag, Zc_real;
     fader uut (
         .reset(reset),
@@ -32,11 +33,12 @@ module fader_top(
         .t_index(t_index),
         .start(start),
         .dv_out(dv_out),
+        .chan_out(chan_out),
         .Zc_imag(Zc_imag),
         .Zc_real(Zc_real)
     );
         
-    top_ila ila0 (.clk(clk), .probe0({t_index, start, dv_out, Zc_imag, Zc_real}));
+    top_ila ila0 (.clk(clk), .probe0({t_index, start, dv_out, chan_out, Zc_imag, Zc_real}));
 
 endmodule
 
