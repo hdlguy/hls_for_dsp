@@ -24,7 +24,7 @@ function [retval] = write_verilog (states, fd, filename)
     fprintf(fp, '        logic signed [%d-1:0]   wd_sin_alpha [%d-1:0];\n', B_cos, M);
     fprintf(fp, '    } fade_struct; \n\n');
     
-    fprintf(fp, '    const fade_struct state[%d] = {\n', N);
+    fprintf(fp, "    const fade_struct state[%d] = \'{\n", N);
     
     wd_cos_alpha = zeros(1,M);
     wd_sin_alpha = zeros(1,M);
