@@ -7,7 +7,7 @@ module fader_top(
 );
 
     logic clk;
-    clk_wiz clk_wiz_inst ( .clk_out100(clk), .locked(), .clk_in100(clk_in) );
+    clk_wiz clk_wiz_inst ( .clk_out(clk), .locked(), .clk_in100(clk_in) );
 
     logic start, reset;
     assign reset = 0;
