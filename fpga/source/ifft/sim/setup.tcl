@@ -9,14 +9,14 @@ set_property default_lib work [current_project]
 load_features ipintegrator
 
 # read cores
-read_ip ../source/fade_ifft/fade_ifft.xci
+read_ip ../fade_ifft/fade_ifft.xci
 upgrade_ip -quiet  [get_ips *]
 generate_target {all} [get_ips *]
 
 # Read in the hdl source.
-read_verilog -sv  [glob ../source/win/win.sv]
-read_verilog -sv  [glob ../source/linterp.sv]
-read_verilog -sv  [glob ../source/fade_ifft_tb.sv]
+read_verilog -sv  [glob ../../win/win.sv]
+read_verilog -sv  [glob ../../linterp.sv]
+read_verilog -sv  [glob ../fade_ifft_tb.sv]
 
 current_fileset
 
