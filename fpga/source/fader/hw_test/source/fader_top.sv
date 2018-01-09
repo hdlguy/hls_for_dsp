@@ -3,6 +3,7 @@
 // simple logic runs the fader and ILAs observer operation.
 
 module fader_top(
+    input logic reset_in,
     input logic clk_in
 );
 
@@ -11,16 +12,15 @@ module fader_top(
 
     // generate a reset.
     logic reset, aresetn;
-    logic [15:0] pre_reset = 0;
+    logic reset_in_reg, reset_in_reg_reg;
     always_ff @(posedge clk) begin
-        pre_reset[14:0] <= pre_reset[15:1];
-        pre_reset[15] <= 1'b1;
-        reset   <= ~pre_reset[0];
-        aresetn <=  pre_reset[0];
+        reset_in_reg <= reset_in;
+        reset_in_reg_reg <= reset_in_reg;
+        reset   <=  reset_in_reg_reg;
+        aresetn <= ~reset_in_reg_reg;
     end
 
     logic start;
-    assign reset = 0;
     logic [9:0] pulse_count;
     logic [24:0] t_index;
     always_ff @(posedge clk) begin
@@ -73,7 +73,9 @@ module fader_top(
     const logic FWD_INV = 0;
     const logic SCALE = 10'b0101010110;
 
+    assign fft_s_axis_data_tvalid = dv_out;
     assign fft_s_axis_data_tdata = {Zc_imag, Zc_real};
+    assign fft_s_axis_data_tlast = ( (chan_out == 0) && (dv_out==1) ) ? 1'b1 : 1'b0;
 
     // little machine to make the config_tvalid for the fft.
     logic sr_config;
@@ -92,6 +94,7 @@ module fader_top(
     end
 
     assign fft_s_axis_config_tdata = {5'd0, SCALE, FWD_INV};
+    assign fft_m_axis_data_tready = 1'b1;
     fade_ifft ifft_uut (
         .aclk(clk),                                              
         .aresetn(aresetn), 
