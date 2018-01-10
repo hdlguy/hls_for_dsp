@@ -15,6 +15,7 @@ wait_on_run impl_1
 open_run impl_1
 write_checkpoint -force ./results/post_route.dcp
 write_bitstream -force ./results/top.bit
+write_debug_probes -force ./results/probes.ltx
 report_timing_summary -file ./results/post_route_timing_summary.rpt
 report_utilization -file ./results/post_route_utilization.rpt
 close_project
