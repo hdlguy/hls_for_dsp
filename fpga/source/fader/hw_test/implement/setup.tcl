@@ -9,6 +9,10 @@ set_property target_language verilog [current_project]
 set_property default_lib work [current_project]
 load_features ipintegrator
 
+set_property  ip_repo_paths ../../../../../HLS/complex_conv/csynth/solution1/impl/ip [current_project]
+update_ip_catalog
+
+read_ip ../source/complex_conv_0/complex_conv_0.xci
 read_ip ../../../ifft/fade_ifft/fade_ifft.xci
 read_ip ../source/linterp_ila/linterp_ila.xci
 read_ip ../source/ifft_ila/ifft_ila.xci
