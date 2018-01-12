@@ -164,9 +164,34 @@ module fader_top(
 
     linterp_ila linterp_ila_i ( .clk( clk ), .probe0( {linterp_dout_imag[1], linterp_dout_real[1], linterp_dout_imag[0], linterp_dout_real[0]}) );
 
+    complex_conv_wrap conv_wrap_i (
+        .reset(reset),
+        .clk(clk),
+        .imag_in(??),
+        .real_in(??),
+        .imag_out(??),
+        .real_out(??),
+    
+        .coef_imag(linterp_dout_imag),
+        .coef_real(linterp_dout_real)
+    ):
+
 endmodule
 
 /*
+
+module complex_conv_wrap (
+    input  logic reset,
+    input  logic clk,
+    input  logic start,
+    output logic done,
+    output logic ready,
+    output logic [17:0] imag_out,
+    output logic [17:0] real_out,
+    
+    input  logic [31:0][17:0] coef_imag,
+    input  logic [31:0][17:0] coef_real
+):
 
     logic aresetn;
     logic [15 : 0] s_axis_config_tdata;

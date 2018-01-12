@@ -3,29 +3,27 @@
 module complex_conv_wrap (
     input  logic reset,
     input  logic clk,
-    input  logic start,
-    output logic done,
-    output logic ready,
+    input  logic [17:0] imag_in,
+    input  logic [17:0] real_in,
     output logic [17:0] imag_out,
     output logic [17:0] real_out,
-    
     input  logic [31:0][17:0] coef_imag,
     input  logic [31:0][17:0] coef_real
 ):
 
 complex_conv_0 conv_inst (
-  .agg_result_M_real_V_ap_vld(agg_result_M_real_V_ap_vld),  // output wire agg_result_M_real_V_ap_vld
-  .agg_result_M_imag_V_ap_vld(agg_result_M_imag_V_ap_vld),  // output wire agg_result_M_imag_V_ap_vld
-  .ap_clk(ap_clk),                                          // input wire ap_clk
-  .ap_rst(ap_rst),                                          // input wire ap_rst
-  .ap_start(ap_start),                                      // input wire ap_start
-  .ap_done(ap_done),                                        // output wire ap_done
-  .ap_idle(ap_idle),                                        // output wire ap_idle
-  .ap_ready(ap_ready),                                      // output wire ap_ready
-  .agg_result_M_real_V(agg_result_M_real_V),                // output wire [17 : 0] agg_result_M_real_V
-  .agg_result_M_imag_V(agg_result_M_imag_V),                // output wire [17 : 0] agg_result_M_imag_V
-  .x_in_M_real_V(x_in_M_real_V),                            // input wire [17 : 0] x_in_M_real_V
-  .x_in_M_imag_V(x_in_M_imag_V),                            // input wire [17 : 0] x_in_M_imag_V
+  .agg_result_M_real_V_ap_vld(),  // output wire agg_result_M_real_V_ap_vld
+  .agg_result_M_imag_V_ap_vld(),  // output wire agg_result_M_imag_V_ap_vld
+  .ap_clk(clk),                                          // input wire ap_clk
+  .ap_rst(reset),                                          // input wire ap_rst
+  .ap_start(1'b1),                                      // input wire ap_start
+  .ap_done(),                                        // output wire ap_done
+  .ap_idle(),                                        // output wire ap_idle
+  .ap_ready(),                                      // output wire ap_ready
+  .agg_result_M_real_V(real_out),                // output wire [17 : 0] agg_result_M_real_V
+  .agg_result_M_imag_V(imag_out),                // output wire [17 : 0] agg_result_M_imag_V
+  .x_in_M_real_V(real_in),                            // input wire [17 : 0] x_in_M_real_V
+  .x_in_M_imag_V(imag_in),                            // input wire [17 : 0] x_in_M_imag_V
 
   .coef_0_M_real_V(coef_real[0]),                        // input wire [17 : 0] coef_0_M_real_V
   .coef_1_M_real_V(coef_real[1]),                        // input wire [17 : 0] coef_1_M_real_V
