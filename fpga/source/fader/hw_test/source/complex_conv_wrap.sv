@@ -7,7 +7,6 @@ module complex_conv_wrap (
     input  logic [17:0] real_in,
     output logic [17:0] imag_out,
     output logic [17:0] real_out,
-    
     input  logic [31:0][17:0] coef_imag,
     input  logic [31:0][17:0] coef_real
 ):

@@ -171,7 +171,6 @@ module fader_top(
         end
     end
 
-    logic [31:0][17:0] coef_imag, coef_real;
     complex_conv_wrap conv_wrap_i (
         .reset(reset),
         .clk(clk),
@@ -179,9 +178,11 @@ module fader_top(
         .real_in(0),
         .imag_out(),
         .real_out(),
-        .coef_imag(coef_imag),
-        .coef_real(coef_real)
+    
+        .coef_imag(linterp_dout_imag),
+        .coef_real(linterp_dout_real)
     ):
 
 endmodule
+
 
