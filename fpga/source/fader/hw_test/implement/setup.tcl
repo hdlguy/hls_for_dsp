@@ -24,6 +24,7 @@ generate_target {all} [get_ips *]
 
 read_verilog -sv ../../../fader/states_pack.sv
 read_verilog -sv [glob ../../fader.sv]
+read_verilog -sv [glob ../source/complex_conv_wrap.sv]
 read_verilog -sv [glob ../source/fader_top.sv]
 read_verilog -sv ../../../linterp.sv
 read_verilog -sv ../../../win/win.sv

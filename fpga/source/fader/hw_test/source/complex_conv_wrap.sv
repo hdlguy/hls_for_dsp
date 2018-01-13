@@ -9,7 +9,7 @@ module complex_conv_wrap (
     output logic [17:0] real_out,
     input  logic [31:0][17:0] coef_imag,
     input  logic [31:0][17:0] coef_real
-):
+);
 
 complex_conv_0 conv_inst (
   .agg_result_M_real_V_ap_vld(),  // output wire agg_result_M_real_V_ap_vld

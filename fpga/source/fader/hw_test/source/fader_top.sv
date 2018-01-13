@@ -164,6 +164,7 @@ module fader_top(
 
     linterp_ila linterp_ila_i ( .clk( clk ), .probe0( {linterp_dout_imag[1], linterp_dout_real[1], linterp_dout_imag[0], linterp_dout_real[0]}) );
 
+    logic [31:0][17:0] coef_imag, coef_real;
     always_comb begin
         for(int i=0; i<32; i++) begin
             coef_imag[i] = {linterp_dout_imag[i], 2'b00};
@@ -179,9 +180,9 @@ module fader_top(
         .imag_out(),
         .real_out(),
     
-        .coef_imag(linterp_dout_imag),
-        .coef_real(linterp_dout_real)
-    ):
+        .coef_imag(coef_imag),
+        .coef_real(coef_real)
+    );
 
 endmodule
 
