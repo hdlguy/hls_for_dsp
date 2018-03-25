@@ -20,8 +20,8 @@ int main()
     // Initializing the random variables.
     // These are computed once for each independent carrier to fade.
     rand_state state[N];
-    //srand (time(NULL));
-    srand (100);
+    srand (time(NULL));
+    //srand (100);
     fade_type theta, alpha;
     for(int j=0; j<N; j++){
         for(int i=0; i<M; i++){
