@@ -38,8 +38,7 @@ module top (
     
     assign ap_rst_n = ~reset;        
     assign inputData_V_V_TDATA[0] = din;
-    assign inputData_V_V_TVALID =  dv;
-    //assign outputData_V_V_TREADY = 1;            
+    assign inputData_V_V_TVALID =  dv;      
     conv_encoder conv_encoder_inst (
         .ap_clk(clk),                                  
         .ap_rst_n(ap_rst_n),                           
@@ -61,7 +60,7 @@ module top (
     
     asssign viterbi_inputData_V_data_V_TVALID = outputData_V_V_TVALID;
     assign outputData_V_V_TREADY = viterbi_inputData_V_data_V_TREADY;
-    assign viterbi_inputData_V_data_V_TDATA = outputData_V_V_TDATA;
+    assign viterbi_inputData_V_data_V_TDATA = outputData_V_V_TDATA;    
     assign viterbi_outputData_V_V_TREADY = 1;
     viterbi_dec viterbi_dec_inst (
         .ap_clk(clk),                                          
