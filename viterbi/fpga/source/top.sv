@@ -60,7 +60,10 @@ module top (
     
     asssign viterbi_inputData_V_data_V_TVALID = outputData_V_V_TVALID;
     assign outputData_V_V_TREADY = viterbi_inputData_V_data_V_TREADY;
-    assign viterbi_inputData_V_data_V_TDATA = outputData_V_V_TDATA;    
+    //assign viterbi_inputData_V_data_V_TDATA = outputData_V_V_TDATA;   
+    logic[1:0] enc_data;
+    assign enc_data = outputData_V_V_TDATA[1:0];   
+    assign viterbi_inputData_V_data_V_TDATA = {2'b00, enc_data[1], 2'b00, enc_data[0], 2'b00}; // just make crude 3 bit soft bit words     
     assign viterbi_outputData_V_V_TREADY = 1;
     viterbi_dec viterbi_dec_inst (
         .ap_clk(clk),                                          
