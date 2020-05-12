@@ -24,7 +24,8 @@ module top (
     end
 
     
-    logic[0:31] d_array = 32'h0200af31; 
+//    logic[0:31] d_array = 32'h0200af31; 
+    logic[0:31] d_array = 32'b0010_0010_0000_0000_0000_0000_0000_0000;
     logic din;     
     logic[4:0] d_count = 0;
     always_ff @(posedge clk) begin
@@ -62,8 +63,11 @@ module top (
     assign outputData_V_V_TREADY = viterbi_inputData_V_data_V_TREADY;
     //assign viterbi_inputData_V_data_V_TDATA = outputData_V_V_TDATA;   
     logic[1:0] enc_data;
-    assign enc_data = outputData_V_V_TDATA[1:0];   
-    assign viterbi_inputData_V_data_V_TDATA = {2'b00, enc_data[1], 2'b00, enc_data[0], 2'b00}; // just make crude 3 bit soft bit words     
+    logic[2:0] soft_bit[1:0];
+    assign enc_data = outputData_V_V_TDATA[1:0];
+    assign soft_bit[1] = {enc_data[1], 2'b00};
+    assign soft_bit[0] = {enc_data[0], 2'b00};
+    assign viterbi_inputData_V_data_V_TDATA = {2'b00, soft_bit[1], soft_bit[0]}; // just make crude 3 bit soft bit words     
     assign viterbi_outputData_V_V_TREADY = 1;
     viterbi_dec viterbi_dec_inst (
         .ap_clk(clk),                                          
@@ -75,10 +79,12 @@ module top (
         .outputData_V_V_TREADY(viterbi_outputData_V_V_TREADY),          // input  wire outputData_V_V_TREADY
         .outputData_V_V_TDATA(viterbi_outputData_V_V_TDATA)             // output wire [7 : 0] outputData_V_V_TDATA
     );
+    logic dout;
+    assign dout = viterbi_outputData_V_V_TDATA[0];
 
 
-    conv_enc_ila ila_inst (.clk(clk), .probe0({ap_rst_n, inputData_V_V_TVALID, inputData_V_V_TREADY, inputData_V_V_TDATA[0], outputData_V_V_TVALID, outputData_V_V_TREADY, outputData_V_V_TDATA[1:0],
-        viterbi_outputData_V_V_TVALID, viterbi_outputData_V_V_TREADY, viterbi_outputData_V_V_TDATA[0]}) );  // 11
+    conv_enc_ila ila_inst (.clk(clk), .probe0({ap_rst_n, inputData_V_V_TVALID, inputData_V_V_TREADY, din, outputData_V_V_TVALID, outputData_V_V_TREADY, 
+        soft_bit[1], soft_bit[0], viterbi_outputData_V_V_TVALID, viterbi_outputData_V_V_TREADY, dout}) );  // 15
 
 
 endmodule
